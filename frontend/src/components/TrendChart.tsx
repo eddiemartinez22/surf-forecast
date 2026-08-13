@@ -12,6 +12,8 @@ import { fetchSpotHistory } from "../api";
 import type { HistoryPoint } from "../types";
 import { metersToFeet } from "../format";
 
+const REFRESH_MS = 5 * 60 * 1000;
+
 interface Props {
   spotId: string;
 }
@@ -28,23 +30,31 @@ export function TrendChart({ spotId }: Props) {
 
   useEffect(() => {
     let cancelled = false;
-    fetchSpotHistory(spotId, 72)
-      .then((history: HistoryPoint[]) => {
-        if (cancelled) return;
-        setPoints(
-          history.map((h) => ({
-            time: new Date(h.timestamp.endsWith("Z") ? h.timestamp : `${h.timestamp}Z`).toLocaleString(
-              undefined,
-              { weekday: "short", hour: "numeric" }
-            ),
-            heightFt: h.height_m !== null ? Math.round(metersToFeet(h.height_m) * 10) / 10 : null,
-            periodSec: h.period_sec,
-          }))
-        );
-      })
-      .catch(() => !cancelled && setError(true));
+
+    const load = () => {
+      fetchSpotHistory(spotId, 72)
+        .then((history: HistoryPoint[]) => {
+          if (cancelled) return;
+          setPoints(
+            history.map((h) => ({
+              time: new Date(h.timestamp.endsWith("Z") ? h.timestamp : `${h.timestamp}Z`).toLocaleString(
+                undefined,
+                { weekday: "short", hour: "numeric" }
+              ),
+              heightFt: h.height_m !== null ? Math.round(metersToFeet(h.height_m) * 10) / 10 : null,
+              periodSec: h.period_sec,
+            }))
+          );
+          setError(false);
+        })
+        .catch(() => !cancelled && setError(true));
+    };
+
+    load();
+    const interval = setInterval(load, REFRESH_MS);
     return () => {
       cancelled = true;
+      clearInterval(interval);
     };
   }, [spotId]);
 
