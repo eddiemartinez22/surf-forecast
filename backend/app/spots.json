@@ -1,0 +1,69 @@
+{
+  "spots": [
+    {
+      "id": "fernandina-beach",
+      "name": "Fernandina Beach, FL",
+      "buoy_id": "41112",
+      "optimal_direction_deg": [30, 100],
+      "min_period_sec": 6,
+      "optimal_period_sec": [8, 14],
+      "size_thresholds_m": {
+        "small": 0.3,
+        "good": 0.6,
+        "firing": 1.2
+      }
+    },
+    {
+      "id": "st-augustine",
+      "name": "St. Augustine, FL",
+      "buoy_id": "41117",
+      "optimal_direction_deg": [40, 110],
+      "min_period_sec": 6,
+      "optimal_period_sec": [8, 14],
+      "size_thresholds_m": {
+        "small": 0.3,
+        "good": 0.6,
+        "firing": 1.2
+      }
+    },
+    {
+      "id": "ponce-inlet",
+      "name": "New Smyrna Beach / Ponce Inlet, FL",
+      "buoy_id": "41070",
+      "optimal_direction_deg": [60, 120],
+      "min_period_sec": 6,
+      "optimal_period_sec": [8, 14],
+      "size_thresholds_m": {
+        "small": 0.3,
+        "good": 0.6,
+        "firing": 1.2
+      }
+    },
+    {
+      "id": "canaveral-offshore",
+      "name": "Canaveral Offshore Reference (20nm), FL",
+      "buoy_id": "41009",
+      "optimal_direction_deg": [60, 120],
+      "min_period_sec": 6,
+      "optimal_period_sec": [8, 14],
+      "size_thresholds_m": {
+        "small": 0.3,
+        "good": 0.6,
+        "firing": 1.2
+      }
+    },
+    {
+      "id": "cape-canaveral-nearshore",
+      "name": "Cape Canaveral Nearshore, FL",
+      "buoy_id": "41113",
+      "optimal_direction_deg": [60, 120],
+      "min_period_sec": 6,
+      "optimal_period_sec": [8, 14],
+      "size_thresholds_m": {
+        "small": 0.3,
+        "good": 0.6,
+        "firing": 1.2
+      }
+    }
+  ]
+}
