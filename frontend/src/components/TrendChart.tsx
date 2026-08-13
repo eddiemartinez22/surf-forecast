@@ -71,7 +71,7 @@ export function TrendChart({ spotId }: Props) {
         <YAxis yAxisId="period" orientation="right" tick={{ fontSize: 10, fill: "var(--chart-axis)" }} width={28} />
         <Tooltip
           contentStyle={{ background: "var(--card-bg)", border: "1px solid var(--border)", fontSize: 12 }}
-          formatter={(value: number, name: string) =>
+          formatter={(value, name) =>
             name === "heightFt" ? [`${value} ft`, "Height"] : [`${value} s`, "Period"]
           }
         />

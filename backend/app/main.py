@@ -28,9 +28,12 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Surf Forecast", lifespan=lifespan)
 
+# Read-only public buoy data, no auth or cookies involved, so a permissive
+# origin policy carries no real risk and avoids having to track every
+# environment (local dev port, Render static site URL, etc.) by hand.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5174"],
+    allow_origins=["*"],
     allow_methods=["GET"],
     allow_headers=["*"],
 )
